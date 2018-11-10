@@ -41,9 +41,7 @@ const config = {
         exclude: /node_modules/,
       },
       {
-        test: /\.(sa|sc|c)ss$/,
-        include: /src/,
-        exclude: /node_modules/,
+        test: /\.css$/,
         use: [
           {
             loader: 'style-loader',
@@ -52,14 +50,8 @@ const config = {
           {
             loader: 'css-loader',
             options: {
-              localIdentName: isDev ? '[path]-[name]_[local]' : '[name]_[local]_[hash:5]', // [hash:base64]
-              modules: true,
               sourceMap: isDev,
             },
-          },
-          {
-            loader: 'sass-loader',
-            options: { sourceMap: isDev },
           },
           {
             loader: 'postcss-loader',
@@ -71,8 +63,38 @@ const config = {
         ],
       },
       {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'style-loader',
+            options: { sourceMap: isDev },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: isDev,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              sourceMap: isDev,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: { sourceMap: isDev },
+          },
+        ],
+      },
+      {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'fonts/',
+        },
       },
     ],
   },
