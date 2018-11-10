@@ -1,0 +1,26 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "commonjs": true,
+    "browser": true
+  },
+  "plugins": ["prettier", "babel", "promise", "import", "react"],
+  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "prettier/prettier": ["error"]
+  }
+}
