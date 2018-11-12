@@ -52,7 +52,6 @@ const config = {
           {
             loader: 'css-loader',
             options: {
-              localIdentName: isDev ? '[path]-[name]_[local]' : '[name]_[local]_[hash:5]', // [hash:base64]
               modules: true,
               sourceMap: isDev,
             },
