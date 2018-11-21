@@ -7,6 +7,8 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const baseWebpackConfig = require('./webpack.config.base');
 
+process.env.NODE_ENV = 'production';
+
 const resolve = dir => path.join(__dirname, dir);
 
 const config = {
