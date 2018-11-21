@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'production';
+
 const path = require('path');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -6,8 +8,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const baseWebpackConfig = require('./webpack.config.base');
-
-process.env.NODE_ENV = 'production';
 
 const resolve = dir => path.join(__dirname, dir);
 

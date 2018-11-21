@@ -1,9 +1,9 @@
+process.env.NODE_ENV = 'development';
+
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const baseWebpackConfig = require('./webpack.config.base');
-
-process.env.NODE_ENV = 'development';
 
 const config = {
   // devtool: 'inline-source-map',
