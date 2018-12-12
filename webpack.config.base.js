@@ -89,6 +89,32 @@ const config = {
         ],
       },
       {
+        test: /\.less$/,
+        use: [
+          {
+            loader: 'style-loader',
+            options: { sourceMap: isDev },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: isDev,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              sourceMap: isDev,
+            },
+          },
+          {
+            loader: 'less-loader',
+            options: { sourceMap: isDev },
+          },
+        ],
+      },
+      {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         loader: 'file-loader',
         options: {

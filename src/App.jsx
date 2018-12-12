@@ -1,5 +1,7 @@
 import React from 'react';
+import 'antd/dist/antd.css';
+import Demo from './ReactTable';
 
-const App = () => <h1>Hello World!</h1>;
+const App = () => <Demo />;
 
 export default App;
