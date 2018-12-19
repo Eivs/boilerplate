@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import shallowEqual from '../../../utils/shallowEqual';
-// import Icon from '../../Icon';
+import shallowEqual from '../../../utils/shallowEqual';
+import Icon from '../../Icon';
 
-class ExpandIcon extends PureComponent {
+class ExpandIcon extends Component {
   static propTypes = {
     record: PropTypes.object,
     prefixCls: PropTypes.string,
@@ -14,9 +14,9 @@ class ExpandIcon extends PureComponent {
     expandIcons: PropTypes.array,
   };
 
-  // shouldComponentUpdate(nextProps) {
-  //   return !shallowEqual(nextProps, this.props);
-  // }
+  shouldComponentUpdate(nextProps) {
+    return !shallowEqual(nextProps, this.props);
+  }
 
   render() {
     const {

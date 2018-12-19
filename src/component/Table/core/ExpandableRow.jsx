@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from '../../../utils/mini-store';
 import ExpandIcon from './ExpandIcon';
 
-class ExpandableRow extends PureComponent {
+class ExpandableRow extends Component {
   static propTypes = {
     prefixCls: PropTypes.string.isRequired,
     rowKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -92,7 +92,10 @@ class ExpandableRow extends PureComponent {
     }
     const { prefixCls } = this.props;
     const expandCell = (
-      <td className={`${prefixCls}-expand-icon-cell`} key="rc-table-expand-icon-cell">
+      <td
+        className={`${prefixCls}-expand-icon-cell`}
+        key="rc-table-expand-icon-cell"
+      >
         {this.renderExpandIcon()}
       </td>
     );

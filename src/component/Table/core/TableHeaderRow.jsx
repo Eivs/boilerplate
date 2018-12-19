@@ -19,7 +19,10 @@ const TableHeaderRow = ({ row, index, height, components, onHeaderRow, prefixCls
   const style = { height, ...customStyle };
 
   return (
-    <HeaderRow {...rowProps} style={style}>
+    <HeaderRow
+      {...rowProps}
+      style={style}
+    >
       {row.map((cell, i) => {
         const { column, ...cellProps } = cell;
         const customProps = column.onHeaderCell ? column.onHeaderCell(column) : {};
@@ -30,7 +33,11 @@ const TableHeaderRow = ({ row, index, height, components, onHeaderRow, prefixCls
           });
         }
         return (
-          <HeaderCell {...cellProps} {...customProps} key={column.key || column.dataIndex || i} />
+          <HeaderCell
+            {...cellProps}
+            {...customProps}
+            key={column.key || column.dataIndex || i}
+          />
         );
       })}
     </HeaderRow>

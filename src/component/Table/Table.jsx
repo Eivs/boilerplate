@@ -614,14 +614,12 @@ class Table extends Component {
 
   recursiveSort = (data, sorterFn) => {
     const { childrenColumnName } = this.props;
-    return data.sort(sorterFn).map(
-      item => (item[childrenColumnName]
-        ? {
-          ...item,
-          [childrenColumnName]: this.recursiveSort(item[childrenColumnName], sorterFn),
-        }
-        : item),
-    );
+    return data.sort(sorterFn).map(item => (item[childrenColumnName]
+      ? {
+        ...item,
+        [childrenColumnName]: this.recursiveSort(item[childrenColumnName], sorterFn),
+      }
+      : item));
   };
 
   findColumn = Key => {
@@ -935,7 +933,6 @@ class Table extends Component {
   render() {
     const { prefixCls, className, style } = this.props;
     let { loading } = this.props;
-    this.CheckboxPropsCache = {};
 
     if (typeof loading === 'boolean') {
       loading = {

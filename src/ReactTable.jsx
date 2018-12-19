@@ -39,7 +39,7 @@ class App extends React.Component {
       },
     })
       .then(res => res.json())
-      .then(data => {
+      .then((data) => {
         const { pagination } = this.state;
         pagination.total = 200;
         this.setState({
@@ -50,12 +50,12 @@ class App extends React.Component {
           pagination,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
 
-  toggleSelection = key => {
+  toggleSelection = (key) => {
     const { selection: stateSelection } = this.state;
     let selection = [...stateSelection];
     const keyIndex = selection.indexOf(key);
@@ -73,14 +73,14 @@ class App extends React.Component {
     if (!selectAll) {
       const wrappedInstance = this.checkboxTable.getWrappedInstance();
       const currentRecords = wrappedInstance.getResolvedState().data;
-      currentRecords.forEach(item => {
+      currentRecords.forEach((item) => {
         selection.push(item.login.uuid);
       });
     }
     this.setState({ selectAll: !selectAll, selection });
   };
 
-  isSelected = key => {
+  isSelected = (key) => {
     const { selection } = this.state;
     return selection.includes(key);
   };
@@ -91,7 +91,9 @@ class App extends React.Component {
   };
 
   render() {
-    const { toggleSelection, toggleAll, isSelected, logSelection } = this;
+    const {
+      toggleSelection, toggleAll, isSelected, logSelection,
+    } = this;
     const { data, selectAll } = this.state;
 
     const checkboxProps = {
@@ -117,11 +119,14 @@ class App extends React.Component {
 
     return (
       <div>
-        <button type="button" onClick={logSelection}>
+        <button
+          type="button"
+          onClick={logSelection}
+        >
           Log Selection
         </button>
         <CheckboxTable
-          ref={r => {
+          ref={(r) => {
             this.checkboxTable = r;
           }}
           data={data}

@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Radio from '../Radio/Radio';
 import Checkbox from '../Checkbox/Checkbox';
 
-class SelectionBox extends PureComponent {
+class SelectionBox extends Component {
   static propTypes = {
     rowIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.func]),
     type: PropTypes.string,

@@ -1,9 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+// import whyDidYouUpdate from 'why-did-you-update';
+import './lego-ui.min.css';
+
+// if (process.env.NODE_ENV !== 'production') {
+//   whyDidYouUpdate(React);
+// }
+
+// eslint-disable-next-line import/first
 import App from './App';
-import './style.scss';
+
 
 /* eslint-disable react/jsx-filename-extension */
-ReactDOM.render(<App />, document.getElementById('root'));
+render(<App />, document.getElementById('root'));
 
 module.hot.accept();

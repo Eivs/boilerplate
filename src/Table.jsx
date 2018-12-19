@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Table, Button } from 'antd';
+import { Table, Button } from './component';
 
 const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
-    sorter: true,
     render: name => `${name.first} ${name.last}`,
     width: '20%',
   },
@@ -28,7 +27,7 @@ class App extends Component {
       pageSize: 100,
     },
     loading: false,
-    results: 10,
+    results: 100,
   };
 
   componentDidMount() {
@@ -67,7 +66,7 @@ class App extends Component {
       .then(res => res.json())
       .then((data) => {
         const { pagination } = this.state;
-        pagination.total = 200;
+        pagination.total = 1;
         this.setState({
           loading: false,
           data: data.results,
@@ -78,6 +77,10 @@ class App extends Component {
         console.log(error);
       });
   };
+
+  handleClick = () => {
+    this.getData();
+  }
 
   render() {
     const {
@@ -93,7 +96,7 @@ class App extends Component {
 
     return (
       <div>
-        <Button onClick={() => this.getData()}>Reload</Button>
+        <Button onClick={this.handleClick}>Reload</Button>
         <Table
           columns={columns}
           rowKey={record => record.login.uuid}

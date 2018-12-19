@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Table, Column, HeaderCell, Cell } from 'rsuite-table';
+import {
+  Table, Column, HeaderCell, Cell,
+} from 'rsuite-table';
 import 'rsuite-table/lib/less/index.less';
 
 class App extends Component {
@@ -31,7 +33,7 @@ class App extends Component {
       },
     })
       .then(res => res.json())
-      .then(data => {
+      .then((data) => {
         const { pagination } = this.state;
         pagination.total = 200;
         this.setState({
@@ -40,12 +42,12 @@ class App extends Component {
           pagination,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.err(error);
       });
   };
 
-  handleCheckAll = e => {
+  handleCheckAll = (e) => {
     const { checked } = e.currentTarget;
     const { data } = this.state;
     const checkedKeys = checked ? data.map(item => item.login.uuid) : [];
@@ -54,7 +56,7 @@ class App extends Component {
     });
   };
 
-  handleCheck = e => {
+  handleCheck = (e) => {
     console.log(e);
     const { value, checked } = e.currentTarget;
     const { checkedKeys } = this.state;
@@ -81,12 +83,16 @@ class App extends Component {
       indeterminate = true;
     }
 
-    const CustomCell = ({ rowData, dataKey, render, ...props }) => {
+    const CustomCell = ({
+      rowData, dataKey, render, ...props
+    }) => {
       const record = rowData[dataKey];
       return <Cell {...props}>{render(record, rowData, dataKey)}</Cell>;
     };
 
-    const CheckCell = ({ rowData, onChange, checkedKeys: keys, dataKey, ...props }) => (
+    const CheckCell = ({
+      rowData, onChange, checkedKeys: keys, dataKey, ...props
+    }) => (
       <Cell {...props}>
         <input
           type="checkbox"
@@ -99,8 +105,15 @@ class App extends Component {
 
     return (
       <div>
-        <Table data={data} autoHeight bordered>
-          <Column width={40} fixed>
+        <Table
+          data={data}
+          autoHeight
+          bordered
+        >
+          <Column
+            width={40}
+            fixed
+          >
             <HeaderCell>
               <input
                 type="checkbox"
@@ -109,20 +122,39 @@ class App extends Component {
                 onChange={this.handleCheckAll}
               />
             </HeaderCell>
-            <CheckCell dataKey="login" checkedKeys={checkedKeys} onChange={this.handleCheck} />
+            <CheckCell
+              dataKey="login"
+              checkedKeys={checkedKeys}
+              onChange={this.handleCheck}
+            />
           </Column>
 
-          <Column width={300} sort fixed resizable>
+          <Column
+            width={300}
+            sort
+            fixed
+            resizable
+          >
             <HeaderCell>Name</HeaderCell>
-            <CustomCell dataKey="name" render={record => `${record.first} ${record.last}`} />
+            <CustomCell
+              dataKey="name"
+              render={record => `${record.first} ${record.last}`}
+            />
           </Column>
 
-          <Column sort resizable>
+          <Column
+            sort
+            resizable
+          >
             <HeaderCell>Gender</HeaderCell>
             <Cell dataKey="gender" />
           </Column>
 
-          <Column width={300} sort resizable>
+          <Column
+            width={300}
+            sort
+            resizable
+          >
             <HeaderCell>Email</HeaderCell>
             <Cell dataKey="email" />
           </Column>

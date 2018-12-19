@@ -2,3 +2,9 @@
 node_modules/
 dist/
 npm-debug.log
+src/component/
+src/scss/
+src/locales/
+src/assets/
+src/utils/
+static

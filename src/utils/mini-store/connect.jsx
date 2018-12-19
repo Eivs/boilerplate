@@ -3,14 +3,13 @@ import hoistStatics from 'hoist-non-react-statics';
 import shallowEqual from '../shallowEqual';
 import storeShape from './PropTypes';
 
-const getDisplayName = WrappedComponent =>
-  WrappedComponent.displayName || WrappedComponent.name || 'Component';
+const getDisplayName = WrappedComponent => WrappedComponent.displayName || WrappedComponent.name || 'Component';
 
 const isStateless = component => !component.prototype.render;
 
 const defaultMapStateToProps = () => ({});
 
-const connect = mapStateToProps => {
+const connect = (mapStateToProps) => {
   const shouldSubscribe = !!mapStateToProps;
 
   const finnalMapStateToProps = mapStateToProps || defaultMapStateToProps;
@@ -97,7 +96,7 @@ const connect = mapStateToProps => {
         if (!isStateless(WrappedComponent)) {
           props = {
             ...props,
-            ref: c => {
+            ref: (c) => {
               this.wrappedInstance = c;
             },
           };

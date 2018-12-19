@@ -1,7 +1,8 @@
 import React from 'react';
-import 'antd/dist/antd.css';
+import { LocaleProvider } from './component';
 import Demo from './ReactTable';
 
-const App = () => <Demo />;
+
+const App = () => <LocaleProvider><Demo /></LocaleProvider>;
 
 export default App;

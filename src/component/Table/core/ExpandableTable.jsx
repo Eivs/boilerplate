@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from '../../../utils/mini-store';
 import TableRow from './TableRow';
 import { remove } from '../tableUtils';
 
-class ExpandableTable extends PureComponent {
+class ExpandableTable extends Component {
   static propTypes = {
     expandIconAsCell: PropTypes.bool,
     expandedRowKeys: PropTypes.array,

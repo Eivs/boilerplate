@@ -12,27 +12,19 @@ class ColumnManager {
   }
 
   isAnyColumnsLeftFixed() {
-    return this.cache('isAnyColumnsLeftFixed', () =>
-      this.columns.some(column => column.fixed === 'left' || column.fixed === true),
-    );
+    return this.cache('isAnyColumnsLeftFixed', () => this.columns.some(column => column.fixed === 'left' || column.fixed === true));
   }
 
   isAnyColumnsRightFixed() {
-    return this.cache('isAnyColumnsRightFixed', () =>
-      this.columns.some(column => column.fixed === 'right'),
-    );
+    return this.cache('isAnyColumnsRightFixed', () => this.columns.some(column => column.fixed === 'right'));
   }
 
   leftColumns() {
-    return this.cache('leftColumns', () =>
-      this.groupedColumns().filter(column => column.fixed === 'left' || column.fixed === true),
-    );
+    return this.cache('leftColumns', () => this.groupedColumns().filter(column => column.fixed === 'left' || column.fixed === true));
   }
 
   rightColumns() {
-    return this.cache('rightColumns', () =>
-      this.groupedColumns().filter(column => column.fixed === 'right'),
-    );
+    return this.cache('rightColumns', () => this.groupedColumns().filter(column => column.fixed === 'right'));
   }
 
   leafColumns() {
@@ -56,10 +48,10 @@ class ColumnManager {
         const setRowSpan = column => {
           const rowSpan = rows.length - currentRow;
           if (
-            column &&
-            !column.children &&
-            rowSpan > 1 &&
-            (!column.rowSpan || column.rowSpan < rowSpan)
+            column
+            && !column.children
+            && rowSpan > 1
+            && (!column.rowSpan || column.rowSpan < rowSpan)
           ) {
             column.rowSpan = rowSpan;
           }

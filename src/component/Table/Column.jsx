@@ -1,3 +1,3 @@
-import { Component } from 'react';
+const Column = () => {};
 
-export default class Column extends Component {}
+export default Column;

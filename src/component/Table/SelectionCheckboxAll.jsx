@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from '../Checkbox/Checkbox';
 
-class SelectionCheckboxAll extends PureComponent {
+class SelectionCheckboxAll extends Component {
   static propTypes = {
     store: PropTypes.object,
     prefixCls: PropTypes.string,

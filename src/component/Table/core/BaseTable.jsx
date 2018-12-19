@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from '../../../utils/mini-store';
@@ -7,7 +7,7 @@ import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 import ExpandableRow from './ExpandableRow';
 
-class BaseTable extends PureComponent {
+class BaseTable extends Component {
   static propTypes = {
     fixed: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     columns: PropTypes.array.isRequired,

@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
-const isInvalidRenderCellText = text =>
-  text && !React.isValidElement(text) && Object.prototype.toString.call(text) === '[object Object]';
+const isInvalidRenderCellText = text => text && !React.isValidElement(text) && Object.prototype.toString.call(text) === '[object Object]';
 
 class TableCell extends PureComponent {
   static propTypes = {
@@ -86,7 +85,11 @@ class TableCell extends PureComponent {
     }
 
     return (
-      <BodyCell className={className} onClick={this.handleClick} {...tdProps}>
+      <BodyCell
+        className={className}
+        onClick={this.handleClick}
+        {...tdProps}
+      >
         {indentText}
         {expandIcon}
         {text}

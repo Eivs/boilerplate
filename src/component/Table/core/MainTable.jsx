@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classes from 'component-classes';
 import { merge } from 'lodash';
 import { Provider, create } from '../../../utils/mini-store';
-import shallowEqual from '../../../utils/shallowEqual';
+import { shallowEqual } from '../../../utils';
 import { debounce, getDataAndAriaProps } from '../tableUtils';
 import ColumnManager from './ColumnManager';
 import HeadTable from './HeadTable';
@@ -243,8 +243,7 @@ class Table extends PureComponent {
       bodyRows,
       (acc, row) => {
         const rowKey = row.getAttribute('data-row-key');
-        const height =
-          row.getBoundingClientRect().height || state.fixedColumnsBodyRowsHeight[rowKey] || 'auto';
+        const height = row.getBoundingClientRect().height || state.fixedColumnsBodyRowsHeight[rowKey] || 'auto';
         acc[rowKey] = height;
         return acc;
       },
@@ -252,8 +251,8 @@ class Table extends PureComponent {
     );
 
     if (
-      shallowEqual(state.fixedColumnsHeadRowsHeight, fixedColumnsHeadRowsHeight) &&
-      shallowEqual(state.fixedColumnsBodyRowsHeight, fixedColumnsBodyRowsHeight)
+      shallowEqual(state.fixedColumnsHeadRowsHeight, fixedColumnsHeadRowsHeight)
+      && shallowEqual(state.fixedColumnsBodyRowsHeight, fixedColumnsBodyRowsHeight)
     ) {
       return;
     }
@@ -441,7 +440,10 @@ class Table extends PureComponent {
   renderTitle() {
     const { title, prefixCls, data } = this.props;
     return title ? (
-      <div className={`${prefixCls}-title`} key="title">
+      <div
+        className={`${prefixCls}-title`}
+        key="title"
+      >
         {title(data)}
       </div>
     ) : null;
@@ -450,7 +452,10 @@ class Table extends PureComponent {
   renderFooter() {
     const { footer, prefixCls, data } = this.props;
     return footer ? (
-      <div className={`${prefixCls}-footer`} key="footer">
+      <div
+        className={`${prefixCls}-footer`}
+        key="footer"
+      >
         {footer(data)}
       </div>
     ) : null;
@@ -464,7 +469,10 @@ class Table extends PureComponent {
 
     const emptyClassName = `${prefixCls}-placeholder`;
     return (
-      <div className={emptyClassName} key="emptyText">
+      <div
+        className={emptyClassName}
+        key="emptyText"
+      >
         {typeof emptyText === 'function' ? emptyText() : emptyText}
       </div>
     );
@@ -503,7 +511,11 @@ class Table extends PureComponent {
 
     return (
       <Provider store={this.store}>
-        <ExpandableTable {...props} columnManager={this.columnManager} getRowKey={this.getRowKey}>
+        <ExpandableTable
+          {...props}
+          columnManager={this.columnManager}
+          getRowKey={this.getRowKey}
+        >
           {expander => {
             this.expander = expander;
             return (

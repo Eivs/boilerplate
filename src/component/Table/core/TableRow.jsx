@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -6,7 +6,7 @@ import { connect } from '../../../utils/mini-store';
 import TableCell from './TableCell';
 import { warningOnce } from '../tableUtils';
 
-class TableRow extends PureComponent {
+class TableRow extends Component {
   static propTypes = {
     onRow: PropTypes.func,
     onRowClick: PropTypes.func,
@@ -72,10 +72,10 @@ class TableRow extends PureComponent {
     }
   }
 
-  // shouldComponentUpdate(nextProps) {
-  //   const { visible } = this.props;
-  //   return !!(visible || nextProps.visible);
-  // }
+  shouldComponentUpdate(nextProps) {
+    const { visible } = this.props;
+    return !!(visible || nextProps.visible);
+  }
 
   componentDidUpdate() {
     const { shouldRender } = this.state;
