@@ -20,7 +20,7 @@ export function measureScrollbar(direction = 'vertical') {
     return scrollbarSize;
   }
   const scrollDiv = document.createElement('div');
-  Object.keys(scrollbarMeasure).forEach(scrollProp => {
+  Object.keys(scrollbarMeasure).forEach((scrollProp) => {
     scrollDiv.style[scrollProp] = scrollbarMeasure[scrollProp];
   });
   document.body.appendChild(scrollDiv);
@@ -144,8 +144,8 @@ export function flatFilter(tree, callback) {
 
 export function flatArray(data, childrenName = 'children') {
   const result = [];
-  const loop = array => {
-    array.forEach(item => {
+  const loop = (array) => {
+    array.forEach((item) => {
       if (item[childrenName]) {
         const newItem = { ...item };
         delete newItem[childrenName];
@@ -164,7 +164,7 @@ export function flatArray(data, childrenName = 'children') {
 
 export function normalizeColumns(elements) {
   const columns = [];
-  React.Children.forEach(elements, element => {
+  React.Children.forEach(elements, (element) => {
     if (!React.isValidElement(element)) {
       return;
     }
@@ -222,7 +222,7 @@ export function getSortOrderColumns(columns) {
 
 export function getFiltersFromColumns(columns) {
   const filters = {};
-  getFilteredValueColumns(columns).forEach(col => {
+  getFilteredValueColumns(columns).forEach((col) => {
     const colKey = getColumnKey(col);
     if ('filteredValue' in col && col.filteredValue !== null && col.filteredValue !== undefined) {
       filters[colKey] = col.filteredValue;
@@ -252,7 +252,7 @@ export function isFiltersChanged(filters, stateFilters) {
   if (Object.keys(filters).length !== Object.keys(stateFilters).length) {
     filtersChanged = true;
   } else {
-    Object.keys(filters).forEach(columnKey => {
+    Object.keys(filters).forEach((columnKey) => {
       if (filters[columnKey] !== stateFilters[columnKey]) {
         filtersChanged = true;
       }

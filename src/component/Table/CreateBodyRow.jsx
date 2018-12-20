@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { omit } from 'lodash';
 
 const createTableRow = (RowComponent = 'tr') => {
-  class BodyRow extends Component {
+  class BodyRow extends PureComponent {
     static propTypes = {
       store: PropTypes.object,
       className: PropTypes.string,

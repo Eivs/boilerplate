@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+// import { onlyUpdateForKeys } from 'recompose';
+import { noop } from 'lodash';
 import { connect } from '../../../utils/mini-store';
 import TableCell from './TableCell';
 import { warningOnce } from '../tableUtils';
 
-class TableRow extends Component {
+class TableRow extends PureComponent {
   static propTypes = {
     onRow: PropTypes.func,
     onRowClick: PropTypes.func,
@@ -38,11 +40,11 @@ class TableRow extends Component {
   };
 
   static defaultProps = {
-    onRow() {},
-    onHover() {},
-    hasExpandIcon() {},
-    renderExpandIcon() {},
-    renderExpandIconCell() {},
+    onRow: noop,
+    onHover: noop,
+    hasExpandIcon: noop,
+    renderExpandIcon: noop,
+    renderExpandIconCell: noop,
   };
 
   constructor(props) {
@@ -72,10 +74,10 @@ class TableRow extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
-    const { visible } = this.props;
-    return !!(visible || nextProps.visible);
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   const { visible } = this.props;
+  //   return !!(visible || nextProps.visible);
+  // }
 
   componentDidUpdate() {
     const { shouldRender } = this.state;
@@ -84,37 +86,41 @@ class TableRow extends Component {
     }
   }
 
-  onRowClick = event => {
+  onRowClick = (event) => {
     const { record, index, onRowClick } = this.props;
     if (onRowClick) {
       onRowClick(record, index, event);
     }
   };
 
-  onRowDoubleClick = event => {
+  onRowDoubleClick = (event) => {
     const { record, index, onRowDoubleClick } = this.props;
     if (onRowDoubleClick) {
       onRowDoubleClick(record, index, event);
     }
   };
 
-  onContextMenu = event => {
+  onContextMenu = (event) => {
     const { record, index, onRowContextMenu } = this.props;
     if (onRowContextMenu) {
       onRowContextMenu(record, index, event);
     }
   };
 
-  onMouseEnter = event => {
-    const { record, index, onRowMouseEnter, onHover, rowKey } = this.props;
+  onMouseEnter = (event) => {
+    const {
+      record, index, onRowMouseEnter, onHover, rowKey,
+    } = this.props;
     onHover(true, rowKey);
     if (onRowMouseEnter) {
       onRowMouseEnter(record, index, event);
     }
   };
 
-  onMouseLeave = event => {
-    const { record, index, onRowMouseLeave, onHover, rowKey } = this.props;
+  onMouseLeave = (event) => {
+    const {
+      record, index, onRowMouseLeave, onHover, rowKey,
+    } = this.props;
     onHover(false, rowKey);
     if (onRowMouseLeave) {
       onRowMouseLeave(record, index, event);
@@ -161,7 +167,9 @@ class TableRow extends Component {
   saveRowRef() {
     this.rowRef = ReactDOM.findDOMNode(this);
 
-    const { isAnyColumnsFixed, fixed, expandedRow, ancestorKeys } = this.props;
+    const {
+      isAnyColumnsFixed, fixed, expandedRow, ancestorKeys,
+    } = this.props;
 
     if (!isAnyColumnsFixed) {
       return;
@@ -199,6 +207,8 @@ class TableRow extends Component {
       renderExpandIcon,
       renderExpandIconCell,
     } = this.props;
+
+    console.log(rowKey);
 
     const BodyRow = components.body.row;
     const BodyCell = components.body.cell;
@@ -289,6 +299,7 @@ const getRowHeight = (state, props) => {
   return null;
 };
 
+// const enhance = onlyUpdateForKeys(['']);
 export default connect((state, props) => {
   const { currentHoverKey, expandedRowKeys } = state;
   const { rowKey, ancestorKeys } = props;

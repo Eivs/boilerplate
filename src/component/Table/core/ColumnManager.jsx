@@ -45,7 +45,7 @@ class ColumnManager {
         /* eslint-disable no-param-reassign */
         rows[currentRow] = rows[currentRow] || [];
         const grouped = [];
-        const setRowSpan = column => {
+        const setRowSpan = (column) => {
           const rowSpan = rows.length - currentRow;
           if (
             column
@@ -83,7 +83,7 @@ class ColumnManager {
 
   normalize(elements) {
     const columns = [];
-    React.Children.forEach(elements, element => {
+    React.Children.forEach(elements, (element) => {
       if (!React.isValidElement(element)) {
         return;
       }
@@ -114,7 +114,7 @@ class ColumnManager {
 
   getLeafColumns(columns) {
     const leafColumns = [];
-    columns.forEach(column => {
+    columns.forEach((column) => {
       if (!column.children) {
         leafColumns.push(column);
       } else {

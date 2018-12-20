@@ -82,14 +82,14 @@ class FilterInput extends Component {
     onInputChange(event, value);
   };
 
-  handleInputFocus = event => {
+  handleInputFocus = (event) => {
     const { onFocus } = this.props;
     this.setState({ hasValue: true }, () => {
       onFocus(event);
     });
   };
 
-  handleInputBlur = event => {
+  handleInputBlur = (event) => {
     const { value } = this.autosuggest;
     const { onBlur } = this.props;
     this.setState({ hasValue: value !== '' }, () => {
@@ -101,7 +101,7 @@ class FilterInput extends Component {
     this.autosuggest.focus();
   };
 
-  handleSelect = value => {
+  handleSelect = (value) => {
     const { isMultiKeyWord } = this.props;
     const { tags } = this.state;
     if (isMultiKeyWord || value.filter !== 'keyword') {
@@ -118,7 +118,7 @@ class FilterInput extends Component {
     );
   };
 
-  handleAdd = item => {
+  handleAdd = (item) => {
     const { onChange } = this.props;
     const { tags } = this.state;
     const newTags = [...tags, item];
@@ -146,7 +146,7 @@ class FilterInput extends Component {
     });
   };
 
-  handleClear = event => {
+  handleClear = (event) => {
     const { onChange, onClear } = this.props;
     event.stopPropagation();
     this.setState({ tags: [], hasValue: false }, () => {
@@ -164,7 +164,7 @@ class FilterInput extends Component {
           <Tag
             closable
             key={`${item.filter}-${item.value}-${index + 1}`}
-            onClick={e => {
+            onClick={(e) => {
               e.stopPropagation();
             }}
             onClose={() => {
@@ -202,7 +202,7 @@ class FilterInput extends Component {
         <div className="table-filter-input tags">
           {this.renderTokenizer()}
           <Autosuggest
-            ref={n => {
+            ref={(n) => {
               this.autosuggest = n;
             }}
             placeholder={this.placeholder}

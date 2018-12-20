@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Radio from '../Radio/Radio';
 import Checkbox from '../Checkbox/Checkbox';
 
-class SelectionBox extends Component {
+class SelectionBox extends PureComponent {
   static propTypes = {
     rowIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.func]),
     type: PropTypes.string,
@@ -30,7 +30,7 @@ class SelectionBox extends Component {
     }
   }
 
-  getCheckState = props => {
+  getCheckState = (props) => {
     const { store, defaultSelection, rowIndex } = props;
     let checked = false;
     if (store.getState().selectionDirty) {
@@ -51,7 +51,9 @@ class SelectionBox extends Component {
   }
 
   render() {
-    const { type, rowIndex, onChange, disabled } = this.props;
+    const {
+      type, rowIndex, onChange, disabled,
+    } = this.props;
     const { checked } = this.state;
     if (type === 'radio') {
       return (

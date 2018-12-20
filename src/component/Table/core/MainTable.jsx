@@ -263,11 +263,11 @@ class Table extends PureComponent {
     });
   };
 
-  saveRef = name => node => {
+  saveRef = name => (node) => {
     this[name] = node;
   };
 
-  handleBodyScrollLeft = e => {
+  handleBodyScrollLeft = (e) => {
     const { target, currentTarget } = e;
     const { scroll = {} } = this.props;
     const { headTable, bodyTable } = this;
@@ -288,7 +288,7 @@ class Table extends PureComponent {
     this.lastScrollLeft = target.scrollLeft;
   };
 
-  handleBodyScrollTop = e => {
+  handleBodyScrollTop = (e) => {
     const { target, currentTarget } = e;
 
     if (currentTarget !== target) {
@@ -296,7 +296,9 @@ class Table extends PureComponent {
     }
 
     const { scroll = {} } = this.props;
-    const { headTable, bodyTable, fixedColumnsBodyLeft, fixedColumnsBodyRight } = this;
+    const {
+      headTable, bodyTable, fixedColumnsBodyLeft, fixedColumnsBodyRight,
+    } = this;
 
     if (target.scrollTop !== this.lastScrollTop && scroll.y && target !== headTable) {
       const { scrollTop } = target;
@@ -314,12 +316,12 @@ class Table extends PureComponent {
     this.lastScrollTop = target.scrollTop;
   };
 
-  handleBodyScroll = e => {
+  handleBodyScroll = (e) => {
     this.handleBodyScrollLeft(e);
     this.handleBodyScrollTop(e);
   };
 
-  handleWheel = event => {
+  handleWheel = (event) => {
     const { scroll = {} } = this.props;
     if (window.navigator.userAgent.match(/Trident\/7\./) && scroll.y) {
       event.preventDefault();
@@ -516,7 +518,7 @@ class Table extends PureComponent {
           columnManager={this.columnManager}
           getRowKey={this.getRowKey}
         >
-          {expander => {
+          {(expander) => {
             this.expander = expander;
             return (
               <div

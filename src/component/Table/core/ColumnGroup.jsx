@@ -1,12 +1,13 @@
+/* eslint-disable react/no-unused-prop-types */
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-const propTypes = {
-  title: PropTypes.node,
-};
+class ColumnGroup extends PureComponent {
+  static isTableColumnGroup = true;
 
-const ColumnGroup = () => {};
-
-ColumnGroup.isTableColumnGroup = true;
-ColumnGroup.propTypes = propTypes;
+  static propTypes = {
+    title: PropTypes.node,
+  };
+}
 
 export default ColumnGroup;

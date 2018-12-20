@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../Icon';
 import { Menu, MenuGroup } from '../Menu';
@@ -7,7 +7,7 @@ import { locale } from '../LocaleProvider';
 
 const { MenuItem, MenuDivider } = Menu;
 
-class FilterDropdown extends Component {
+class FilterDropdown extends PureComponent {
   static propTypes = {
     enableSort: PropTypes.bool,
     hideable: PropTypes.bool,

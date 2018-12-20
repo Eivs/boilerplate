@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from '../../../utils/mini-store';
@@ -7,7 +7,7 @@ import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 import ExpandableRow from './ExpandableRow';
 
-class BaseTable extends Component {
+class BaseTable extends PureComponent {
   static propTypes = {
     fixed: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     columns: PropTypes.array.isRequired,
@@ -59,7 +59,9 @@ class BaseTable extends Component {
       onRowMouseLeave,
       onRow,
     } = table.props;
-    const { getRowKey, fixed, expander, isAnyColumnsFixed } = this.props;
+    const {
+      getRowKey, fixed, expander, isAnyColumnsFixed,
+    } = this.props;
 
     const rows = [];
 
@@ -134,8 +136,12 @@ class BaseTable extends Component {
   render() {
     const { table } = this.context;
     const { components } = table;
-    const { prefixCls, scroll, data, getBodyWrapper } = table.props;
-    const { expander, tableClassName, hasHead, hasBody, fixed } = this.props;
+    const {
+      prefixCls, scroll, data, getBodyWrapper,
+    } = table.props;
+    const {
+      expander, tableClassName, hasHead, hasBody, fixed,
+    } = this.props;
     const tableStyle = {};
     const columns = this.getColumns();
 

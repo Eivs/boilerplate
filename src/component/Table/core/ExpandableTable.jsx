@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from '../../../utils/mini-store';
 import TableRow from './TableRow';
 import { remove } from '../tableUtils';
 
-class ExpandableTable extends Component {
+class ExpandableTable extends PureComponent {
   static propTypes = {
     expandIconAsCell: PropTypes.bool,
     expandedRowKeys: PropTypes.array,
@@ -141,7 +141,9 @@ class ExpandableTable extends Component {
   };
 
   renderExpandedRow(record, index, render, className, ancestorKeys, indent, fixed) {
-    const { prefixCls, expandIconAsCell, indentSize, expandRowIndent } = this.props;
+    const {
+      prefixCls, expandIconAsCell, indentSize, expandRowIndent,
+    } = this.props;
     const parentKey = ancestorKeys[ancestorKeys.length - 1];
     const rowKey = `${parentKey}-extra-row`;
     const components = {

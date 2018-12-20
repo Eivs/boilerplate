@@ -16,7 +16,7 @@ class TableCell extends PureComponent {
     component: PropTypes.any,
   };
 
-  handleClick = e => {
+  handleClick = (e) => {
     const {
       record,
       column: { onCellClick },

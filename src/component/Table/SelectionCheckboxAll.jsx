@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from '../Checkbox/Checkbox';
 
-class SelectionCheckboxAll extends Component {
+class SelectionCheckboxAll extends PureComponent {
   static propTypes = {
     store: PropTypes.object,
     prefixCls: PropTypes.string,
@@ -41,7 +41,7 @@ class SelectionCheckboxAll extends Component {
     return indeterminate;
   }
 
-  handleSelectAllChagne = e => {
+  handleSelectAllChagne = (e) => {
     const { onSelect } = this.props;
     const { checked } = e.target;
     onSelect(checked ? 'all' : 'removeAll', 0, null);

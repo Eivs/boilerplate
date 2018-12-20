@@ -1,6 +1,6 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 
-class ColumnGroup extends Component {
+class ColumnGroup extends PureComponent {
   static TABLE_COLUMN_GROUP = true;
 }
 

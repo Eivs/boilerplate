@@ -1,8 +1,8 @@
-import { Component, Children } from 'react';
+import { PureComponent, Children } from 'react';
 import PropTypes from 'prop-types';
 import storeShape from './PropTypes';
 
-class Provider extends Component {
+class Provider extends PureComponent {
   static propTypes = {
     store: storeShape.isRequired,
     children: PropTypes.node,

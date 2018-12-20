@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { onlyUpdateForKeys } from 'recompose';
 import { connect } from '../../../utils/mini-store';
 import ExpandIcon from './ExpandIcon';
 
-class ExpandableRow extends Component {
+class ExpandableRow extends PureComponent {
   static propTypes = {
     prefixCls: PropTypes.string.isRequired,
     rowKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -28,7 +29,7 @@ class ExpandableRow extends Component {
     this.handleDestroy();
   }
 
-  hasExpandIcon = columnIndex => {
+  hasExpandIcon = (columnIndex) => {
     const { expandRowByClick } = this.props;
     return (
       !this.expandIconAsCell && !expandRowByClick && columnIndex === this.expandIconColumnIndex
@@ -60,7 +61,9 @@ class ExpandableRow extends Component {
   };
 
   renderExpandIcon = () => {
-    const { prefixCls, expanded, record, needIndentSpaced, expandIcon, expandIcons } = this.props;
+    const {
+      prefixCls, expanded, record, needIndentSpaced, expandIcon, expandIcons,
+    } = this.props;
 
     if (expandIcon) {
       return expandIcon({
@@ -86,7 +89,7 @@ class ExpandableRow extends Component {
     );
   };
 
-  renderExpandIconCell = cells => {
+  renderExpandIconCell = (cells) => {
     if (!this.expandIconAsCell) {
       return;
     }
@@ -133,7 +136,7 @@ class ExpandableRow extends Component {
     return children(expandableRowProps);
   }
 }
-
+const enhance = onlyUpdateForKeys(['']);
 export default connect(({ expandedRowKeys }, { rowKey }) => ({
   expanded: expandedRowKeys.indexOf(rowKey) !== -1,
-}))(ExpandableRow);
+}))(enhance(ExpandableRow));

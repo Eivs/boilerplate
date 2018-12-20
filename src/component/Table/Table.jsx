@@ -105,8 +105,12 @@ class Table extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    const { pagination, rowSelection, hiddenColumns, components } = nextProps;
-    const { sortColumn, sortOrder, hiddenCols, filters } = prevState;
+    const {
+      pagination, rowSelection, hiddenColumns, components,
+    } = nextProps;
+    const {
+      sortColumn, sortOrder, hiddenCols, filters,
+    } = prevState;
     const columns = nextProps.columns || normalizeColumns(nextProps.children);
     const newState = {};
     if ('pagination' in nextProps) {
@@ -136,7 +140,7 @@ class Table extends Component {
     if (filteredValueColumns.length > 0) {
       const filtersFromColumns = getFiltersFromColumns(columns);
       const newFilters = {};
-      Object.keys(filtersFromColumns).forEach(key => {
+      Object.keys(filtersFromColumns).forEach((key) => {
         newFilters[key] = filtersFromColumns[key];
       });
       if (isFiltersChanged(newFilters, filters)) {
@@ -190,7 +194,9 @@ class Table extends Component {
     };
   };
 
-  setSelectedRowKeys(selectedRowKeys, { selectWay, record, checked, changeRowKeys, nativeEvent }) {
+  setSelectedRowKeys(selectedRowKeys, {
+    selectWay, record, checked, changeRowKeys, nativeEvent,
+  }) {
     const { rowSelection = {} } = this.props;
 
     if (rowSelection && !('selectedRowKeys' in rowSelection)) {
@@ -226,7 +232,7 @@ class Table extends Component {
     this.setState({ hasSelected: selectedRowKeys.length > 0 });
   }
 
-  getDefaultSortOrder = columns => {
+  getDefaultSortOrder = (columns) => {
     const definedSortState = getSortStateFromColumns(columns);
 
     const defaultSortedColumn = flatFilter(
@@ -258,9 +264,9 @@ class Table extends Component {
     };
   }
 
-  getFiltersFromColumns = columns => {
+  getFiltersFromColumns = (columns) => {
     const filters = {};
-    getFilteredValueColumns(columns).forEach(col => {
+    getFilteredValueColumns(columns).forEach((col) => {
       const colKey = getColumnKey(col);
       if ('filteredValue' in col && col.filteredValue !== null && col.filteredValue !== undefined) {
         filters[colKey] = col.filteredValue;
@@ -310,7 +316,7 @@ class Table extends Component {
       data = this.recursiveSort(data, sorterFn);
     }
     if (state.filters) {
-      Object.keys(state.filters).forEach(columnKey => {
+      Object.keys(state.filters).forEach((columnKey) => {
         const col = this.findColumn(columnKey);
         if (!col) {
           return;
@@ -434,13 +440,13 @@ class Table extends Component {
 
     const currentColumnKeys = [];
 
-    treeMap(columns, col => {
+    treeMap(columns, (col) => {
       if (!col.children) {
         currentColumnKeys.push(getColumnKey(col));
       }
     });
 
-    Object.keys(filters).forEach(columnKey => {
+    Object.keys(filters).forEach((columnKey) => {
       if (currentColumnKeys.indexOf(columnKey) < 0) {
         delete filters[columnKey];
       }
@@ -458,7 +464,7 @@ class Table extends Component {
 
     const filtersToSetState = { ...filters };
 
-    getFilteredValueColumns(columns).forEach(col => {
+    getFilteredValueColumns(columns).forEach((col) => {
       const columnKey = getColumnKey(col);
       if (columnKey) {
         delete filtersToSetState[columnKey];
@@ -494,7 +500,7 @@ class Table extends Component {
     });
   };
 
-  handleHideColumn = column => {
+  handleHideColumn = (column) => {
     const { hiddenCols } = this.state;
     const { onHideColumn } = this.props;
     const columnKey = getColumnKey(column);
@@ -555,7 +561,7 @@ class Table extends Component {
     });
   };
 
-  handleSelectRow = selectionKey => {
+  handleSelectRow = (selectionKey) => {
     const data = this.getFlatCurrentPageData();
     const defaultSelection = this.store.getState().selectionDirty ? [] : this.getDefaultSelection();
     const selectedRowKeys = this.store.getState().selectedRowKeys.concat(defaultSelection);
@@ -567,7 +573,7 @@ class Table extends Component {
     let checked;
     switch (selectionKey) {
       case 'all':
-        changeableRowKeys.forEach(key => {
+        changeableRowKeys.forEach((key) => {
           if (selectedRowKeys.indexOf(key) < 0) {
             selectedRowKeys.push(key);
             changeRowKeys.push(key);
@@ -577,7 +583,7 @@ class Table extends Component {
         checked = true;
         break;
       case 'removeAll':
-        changeableRowKeys.forEach(key => {
+        changeableRowKeys.forEach((key) => {
           if (selectedRowKeys.indexOf(key) >= 0) {
             selectedRowKeys.splice(selectedRowKeys.indexOf(key), 1);
             changeRowKeys.push(key);
@@ -587,7 +593,7 @@ class Table extends Component {
         checked = false;
         break;
       case 'invert':
-        changeableRowKeys.forEach(key => {
+        changeableRowKeys.forEach((key) => {
           if (selectedRowKeys.indexOf(key) < 0) {
             selectedRowKeys.push(key);
           } else {
@@ -622,10 +628,10 @@ class Table extends Component {
       : item));
   };
 
-  findColumn = Key => {
+  findColumn = (Key) => {
     const { columns } = this.state;
     let column;
-    treeMap(columns, c => {
+    treeMap(columns, (c) => {
       if (getColumnKey(c) === Key) {
         column = c;
       }
@@ -633,7 +639,7 @@ class Table extends Component {
     return column;
   };
 
-  isSortColumn = column => {
+  isSortColumn = (column) => {
     const { sortColumn } = this.state;
     if (!column || !sortColumn) {
       return false;
@@ -641,7 +647,7 @@ class Table extends Component {
     return getColumnKey(sortColumn) === getColumnKey(column);
   };
 
-  prepareParamsArguments = state => {
+  prepareParamsArguments = (state) => {
     const pagination = { ...state.pagination };
     delete pagination.onChange;
     delete pagination.onShowSizeChange;
@@ -769,7 +775,7 @@ class Table extends Component {
   renderSelectionBox = type => (_, record, index) => {
     const rowIndex = this.getRecordKey(record, index);
     const props = this.getCheckboxPropsByItem(record, index);
-    const handleChange = e => {
+    const handleChange = (e) => {
       if (type === 'radio') {
         this.handleRadioSelect(record, rowIndex, e);
       } else {
@@ -879,7 +885,9 @@ class Table extends Component {
       expandIconAsCell: propsExpandIconAsCell,
       ...restProps
     } = this.props;
-    const { hiddenCols, hasSelected, components, columns: stateColumns } = this.state;
+    const {
+      hiddenCols, hasSelected, components, columns: stateColumns,
+    } = this.state;
     const data = dataSource;
     const expandIconAsCell = expandedRowRender && propsExpandIconAsCell !== false;
 
@@ -900,7 +908,7 @@ class Table extends Component {
       return newColumn;
     });
 
-    hiddenCols.forEach(key => {
+    hiddenCols.forEach((key) => {
       columns.forEach((column, index) => {
         if (column.key === key) {
           columns.splice(index, 1);

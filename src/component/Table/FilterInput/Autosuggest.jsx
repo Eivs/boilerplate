@@ -51,7 +51,9 @@ class Autosuggest extends Component {
   }
 
   get items() {
-    const { items, filter, sort, limit } = this.props;
+    const {
+      items, filter, sort, limit,
+    } = this.props;
     const { value, curItem } = this.state;
     const results = items
       .filter(item => filter(item, value))
@@ -103,7 +105,7 @@ class Autosuggest extends Component {
     this.isBlur = false;
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     const { value } = e.target;
     const { onChange, items } = this.props;
     const item = items.find(n => new RegExp(`^${n.label + SEMICOLON}`, '').test(value));
@@ -127,7 +129,7 @@ class Autosuggest extends Component {
     });
   };
 
-  handlePressEnter = event => {
+  handlePressEnter = (event) => {
     event.stopPropagation();
     const { selectedIndex, value, curItem } = this.state;
     let params = {};
@@ -177,7 +179,7 @@ class Autosuggest extends Component {
     }
   };
 
-  handleSelectItem = item => event => {
+  handleSelectItem = item => (event) => {
     event.stopPropagation();
     const { inputbox } = this;
 
@@ -202,7 +204,7 @@ class Autosuggest extends Component {
     );
   };
 
-  handleFocus = event => {
+  handleFocus = (event) => {
     const { onFocus } = this.props;
 
     this.open();
@@ -211,7 +213,7 @@ class Autosuggest extends Component {
     }
   };
 
-  handleBlur = event => {
+  handleBlur = (event) => {
     const { onBlur } = this.props;
 
     if (!this.isBlur) return;
@@ -222,7 +224,7 @@ class Autosuggest extends Component {
     }
   };
 
-  handleDelete = event => {
+  handleDelete = (event) => {
     const { onDelete } = this.props;
     const { value } = this.state;
 
@@ -233,7 +235,7 @@ class Autosuggest extends Component {
     }
   };
 
-  handleKeyDown = event => {
+  handleKeyDown = (event) => {
     const { selectedIndex } = this.state;
 
     this.open();
@@ -305,7 +307,7 @@ class Autosuggest extends Component {
           onBlur={this.handleBlur}
           onChange={this.handleChange}
           placeholder={placeholder}
-          ref={n => {
+          ref={(n) => {
             this.inputbox = n;
           }}
           value={value}

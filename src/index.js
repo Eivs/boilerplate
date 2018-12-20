@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
-// import whyDidYouUpdate from 'why-did-you-update';
+import whyDidYouUpdate from 'why-did-you-update';
 import './lego-ui.min.css';
 
-// if (process.env.NODE_ENV !== 'production') {
-//   whyDidYouUpdate(React);
-// }
+if (process.env.NODE_ENV !== 'production') {
+  whyDidYouUpdate(React, { groupByComponent: true, collapseComponentGroups: true });
+}
 
 // eslint-disable-next-line import/first
 import App from './App';
