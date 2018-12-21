@@ -772,21 +772,14 @@ class Table extends Component {
     });
   }
 
-  renderSelectionBox = type => (_, record, index) => {
+  renderRadioBox = (_, record, index) => {
     const rowIndex = this.getRecordKey(record, index);
     const props = this.getCheckboxPropsByItem(record, index);
-    const handleChange = (e) => {
-      if (type === 'radio') {
-        this.handleRadioSelect(record, rowIndex, e);
-      } else {
-        this.handleSelect(record, rowIndex, e);
-      }
-    };
-
+    const handleChange = (e) => this.handleRadioSelect(record, rowIndex, e);
     return (
       <span onClick={stopPropagation}>
         <SelectionBox
-          type={type}
+          type="radio"
           store={this.store}
           rowIndex={rowIndex}
           onChange={handleChange}
@@ -795,6 +788,31 @@ class Table extends Component {
         />
       </span>
     );
+  };
+
+  renderCheckBox = (_, record, index) => {
+    const rowIndex = this.getRecordKey(record, index);
+    const props = this.getCheckboxPropsByItem(record, index);
+    const handleChange = (e) => this.handleSelect(record, rowIndex, e);
+    return (
+      <span onClick={stopPropagation}>
+        <SelectionBox
+          type="checkbox"
+          store={this.store}
+          rowIndex={rowIndex}
+          onChange={handleChange}
+          defaultSelection={this.getDefaultSelection()}
+          {...props}
+        />
+      </span>
+    );
+  }
+
+  renderSelectionBox = type => {
+    if (type === 'radio') {
+      return this.renderRadioBox;
+    }
+    return this.renderCheckBox;
   };
 
   renderRowSelection() {
@@ -811,9 +829,10 @@ class Table extends Component {
       const selectionColumnClass = classNames(`${prefixCls}-selection-column`, {
         [`${prefixCls}-selection-column-custom`]: rowSelection.selections,
       });
+      const render = this.renderSelectionBox(rowSelection.type);
       const selectionColumn = {
         key: 'selection-column',
-        render: this.renderSelectionBox(rowSelection.type),
+        render,
         className: selectionColumnClass,
         fixed: rowSelection.fixed,
         width: rowSelection.columnWidth,

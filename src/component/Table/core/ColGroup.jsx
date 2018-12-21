@@ -1,7 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import deepEqual from '../../../utils/deepEqual';
 
-class ColGroup extends PureComponent {
+class ColGroup extends Component {
   static propTypes = {
     fixed: PropTypes.string,
   };
@@ -9,6 +10,10 @@ class ColGroup extends PureComponent {
   static contextTypes = {
     table: PropTypes.any,
   };
+
+  shouldComponentUpdate(nextProps) {
+    return !deepEqual(this.props, nextProps);
+  }
 
   render() {
     const { table } = this.context;

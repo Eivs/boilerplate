@@ -63,7 +63,6 @@ class SelectionCheckboxAll extends PureComponent {
   render() {
     const { disabled, prefixCls } = this.props;
     const selectionPrefixCls = `${prefixCls}-selection`;
-
     return (
       <div className={selectionPrefixCls}>
         <Checkbox

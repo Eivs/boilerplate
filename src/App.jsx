@@ -1,6 +1,6 @@
 import React from 'react';
 import { LocaleProvider } from './component';
-import Demo from './Table';
+import Demo from './TreeTable';
 
 
 const App = () => <LocaleProvider><Demo /></LocaleProvider>;

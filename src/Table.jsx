@@ -105,6 +105,8 @@ class App extends Component {
           pagination={pagination}
           loading={loading}
           onChange={this.handleTableChange}
+          expandIcons={['minus-square', 'plus-square']}
+          expandedRowRender={record => (<p>{JSON.stringify(record.login)}</p>)}
         />
       </div>
     );

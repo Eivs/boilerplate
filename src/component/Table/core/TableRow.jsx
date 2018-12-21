@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-// import { onlyUpdateForKeys } from 'recompose';
 import { noop } from 'lodash';
 import { connect } from '../../../utils/mini-store';
 import TableCell from './TableCell';
@@ -299,7 +298,6 @@ const getRowHeight = (state, props) => {
   return null;
 };
 
-// const enhance = onlyUpdateForKeys(['']);
 export default connect((state, props) => {
   const { currentHoverKey, expandedRowKeys } = state;
   const { rowKey, ancestorKeys } = props;

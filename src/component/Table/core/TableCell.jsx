@@ -1,10 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
+import deepEqual from '../../../utils/deepEqual';
+
 
 const isInvalidRenderCellText = text => text && !React.isValidElement(text) && Object.prototype.toString.call(text) === '[object Object]';
 
-class TableCell extends PureComponent {
+class TableCell extends Component {
   static propTypes = {
     record: PropTypes.object,
     prefixCls: PropTypes.string,
@@ -15,6 +17,10 @@ class TableCell extends PureComponent {
     expandIcon: PropTypes.node,
     component: PropTypes.any,
   };
+
+  shouldComponentUpdate(nextProps) {
+    return !deepEqual(this.props, nextProps);
+  }
 
   handleClick = (e) => {
     const {
@@ -47,6 +53,7 @@ class TableCell extends PureComponent {
     } else {
       text = get(record, dataIndex);
     }
+
     let tdProps = {};
     let tdColSpan;
     let tdRowSpan;
