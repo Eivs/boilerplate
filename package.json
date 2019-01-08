@@ -10,10 +10,13 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.5",
+    "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-hot-loader": "^4.6.3"
+    "react-hot-loader": "^4.6.3",
+    "react-waterfall": "^4.0.1",
+    "recompose": "^0.30.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
