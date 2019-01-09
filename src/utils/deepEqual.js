@@ -3,13 +3,13 @@
 var isArray = Array.isArray;
 var keyList = Object.keys;
 var hasProp = Object.prototype.hasOwnProperty;
-var hasElementType = typeof Element !== 'undefined';
+var hasElementType = typeof Element !== "undefined";
 
-function equal(a, b) {
+function equal(a, b, logDiff) {
   // fast-deep-equal index.js 2.0.1
   if (a === b) return true;
 
-  if (a && b && typeof a == 'object' && typeof b == 'object') {
+  if (a && b && typeof a == "object" && typeof b == "object") {
     var arrA = isArray(a),
       arrB = isArray(b),
       i,
@@ -45,12 +45,13 @@ function equal(a, b) {
 
     // start react-fast-compare
     // custom handling for DOM elements
-    if (hasElementType && a instanceof Element && b instanceof Element) return a === b;
+    if (hasElementType && a instanceof Element && b instanceof Element)
+      return a === b;
 
     // custom handling for React
     for (i = length; i-- !== 0; ) {
       key = keys[i];
-      if (key === '_owner' && a.$$typeof) {
+      if (key === "_owner" && a.$$typeof) {
         // React-specific: avoid traversing React elements' _owner.
         //  _owner contains circular references
         // and is not needed when comparing the actual elements (and not their owners)
@@ -58,7 +59,12 @@ function equal(a, b) {
         continue;
       } else {
         // all other properties should be traversed as usual
-        if (!equal(a[key], b[key])) return false;
+        if (!equal(a[key], b[key])) {
+          if (logDiff) {
+            console.log(`key: ${key}`, a[key], b[key]);
+          }
+          return false;
+        }
       }
     }
     // end react-fast-compare
@@ -71,9 +77,9 @@ function equal(a, b) {
 }
 // end fast-deep-equal
 
-export default (a, b) => {
+export default (a, b, logDiff) => {
   try {
-    return equal(a, b);
+    return equal(a, b, logDiff);
   } catch (error) {
     if (
       (error.message && error.message.match(/stack|recursion/i)) ||
@@ -85,9 +91,9 @@ export default (a, b) => {
       // firefox: "InternalError", too much recursion"
       // edge: "Error", "Out of stack space"
       console.warn(
-        'Warning: react-fast-compare does not handle circular references.',
+        "Warning: react-fast-compare does not handle circular references.",
         error.name,
-        error.message,
+        error.message
       );
       return false;
     }

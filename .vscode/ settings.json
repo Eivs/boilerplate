@@ -7,5 +7,7 @@
   "prettier.stylelintIntegration": true,
   "javascript.format.enable": false,
   "editor.tabSize": 2,
-  "beautify.tabSize": 2
+  "beautify.tabSize": 2,
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "eslint.validate": ["javascript", "javascriptreact"]
 }

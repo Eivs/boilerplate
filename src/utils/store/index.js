@@ -5,14 +5,16 @@ import createConnect from './Connect';
 import Subscriptions from './subscriptions';
 import devtools from './devtools';
 
-const defaultMiddlewares =
-  process.env.NODE_ENV === 'development' &&
-  typeof window !== 'undefined' &&
-  window.devToolsExtension
-    ? [devtools]
-    : [];
+const defaultMiddlewares = process.env.NODE_ENV === 'development'
+  && typeof window !== 'undefined'
+  && window.devToolsExtension
+  ? [devtools]
+  : [];
 
-const createStore = ({ initialState, actionsCreators = {} }, middlewares = []) => {
+const createStore = (
+  { initialState, actionsCreators = {} },
+  middlewares = [],
+) => {
   let provider;
   const context = createContext();
 
@@ -52,8 +54,8 @@ const createStore = ({ initialState, actionsCreators = {} }, middlewares = []) =
   );
 
   const setProvider = self => {
-    const initializedMiddlewares = [...middlewares, ...defaultMiddlewares].map(middleware =>
-      middleware({ initialState, actionsCreators }, self, actions),
+    const initializedMiddlewares = [...middlewares, ...defaultMiddlewares].map(
+      middleware => middleware({ initialState, actionsCreators }, self, actions),
     );
 
     provider = {

@@ -32,7 +32,14 @@ class Table extends PureComponent {
           <tbody>
             {dataSource.map((record, index) => {
               const rowKey = this.getRowKey(record, index);
-              return <TableRow key={rowKey} rowKey={rowKey} record={record} columns={columns} />;
+              return (
+                <TableRow
+                  key={rowKey}
+                  rowKey={rowKey}
+                  record={record}
+                  columns={columns}
+                />
+              );
             })}
           </tbody>
         </table>

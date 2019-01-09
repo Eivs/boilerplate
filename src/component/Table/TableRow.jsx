@@ -11,7 +11,7 @@ class TableRow extends Component {
   };
 
   shouldComponentUpdate(nextProps) {
-    return !deepEqual(this.props, nextProps);
+    return !deepEqual(this.props, nextProps, true);
   }
 
   render() {

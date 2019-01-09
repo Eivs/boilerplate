@@ -8,6 +8,8 @@ export default class Subscriptions {
   };
 
   unsubscribe = subscription => {
-    this.subscriptions = this.subscriptions.filter(subscriber => subscriber !== subscription);
+    this.subscriptions = this.subscriptions.filter(
+      subscriber => subscriber !== subscription,
+    );
   };
 }
