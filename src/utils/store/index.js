@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 import createProvider from './Provider';
-import createConnect from './connect';
+import createConnect from './Connect';
 import Subscriptions from './subscriptions';
 import devtools from './devtools';
 
