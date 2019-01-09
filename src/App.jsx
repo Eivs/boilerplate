@@ -10,7 +10,9 @@ const ThemeContext = createContext({
 const title = props => (
   <ThemeContext.Consumer>
     {context => (
-      <h1 style={{ background: context.background, color: context.color }}>{props.children}</h1>
+      <h1 style={{ background: context.background, color: context.color }}>
+        {props.children}
+      </h1>
     )}
   </ThemeContext.Consumer>
 );
@@ -21,7 +23,12 @@ title.propTypes = {
 
 const Title = memo(title);
 
-const Input = props => <input type="text" {...props} />;
+const Input = props => (
+  <input
+    type="text"
+    {...props}
+  />
+);
 
 const Header = memo(() => (
   <>
