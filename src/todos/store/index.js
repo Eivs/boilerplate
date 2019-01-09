@@ -1,4 +1,4 @@
-import createStore from 'react-waterfall';
+import createStore from '../../utils/store';
 
 import initialState from './state';
 import actionsCreators from './actions';

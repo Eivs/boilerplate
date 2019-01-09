@@ -3,24 +3,15 @@ import PropTypes from 'prop-types';
 import { withProps } from 'recompose';
 import { actions, connect } from './TableStore';
 
-@connect(state => ({ selectedRowKeys: state.selectedRowKeys }))
+@connect(({ selectedRowKeys }, { rowKey }) => ({ checked: selectedRowKeys.includes(rowKey) }))
 class CheckBox extends PureComponent {
   static propTypes = {
     selectType: PropTypes.string,
     onChange: PropTypes.func,
     rowKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     record: PropTypes.object,
-    selectedRowKeys: PropTypes.array,
+    checked: PropTypes.bool,
   };
-
-  static defaultProps = {
-    selectedRowKeys: [],
-  };
-
-  get checked() {
-    const { selectedRowKeys, rowKey } = this.props;
-    return selectedRowKeys.includes(rowKey);
-  }
 
   onChange = e => {
     const { onChange, record, rowKey } = this.props;
@@ -35,10 +26,8 @@ class CheckBox extends PureComponent {
   };
 
   render() {
-    const { selectType } = this.props;
-    return (
-      <input type={selectType || 'checkbox'} checked={this.checked} onChange={this.onChange} />
-    );
+    const { selectType, checked } = this.props;
+    return <input type={selectType || 'checkbox'} checked={checked} onChange={this.onChange} />;
   }
 }
 

@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class Prevent extends PureComponent {
+class Prevent extends PureComponent {
   static propTypes = {
     renderComponent: PropTypes.func,
   };
@@ -11,3 +11,5 @@ export default class Prevent extends PureComponent {
     return renderComponent(rest);
   }
 }
+
+export default Prevent;

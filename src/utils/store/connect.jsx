@@ -1,12 +1,14 @@
-import React from 'react';
+/* eslint-disable react/no-multi-comp */
+import React, { memo } from 'react';
 import Prevent from './Prevent';
 
 const connect = Consumer => mapStateToProps => WrappedComponent => {
   const renderComponent = props => <WrappedComponent {...props} />;
+
   const ConnectedComponent = props => (
     <Consumer>
       {state => {
-        const filteredState = mapStateToProps(state || {});
+        const filteredState = mapStateToProps(state || {}, props);
         return <Prevent renderComponent={renderComponent} {...props} {...filteredState} />;
       }}
     </Consumer>
@@ -16,7 +18,7 @@ const connect = Consumer => mapStateToProps => WrappedComponent => {
     WrappedComponent.name ||
     'Unknown'})`;
 
-  return ConnectedComponent;
+  return memo(ConnectedComponent);
 };
 
 export default connect;

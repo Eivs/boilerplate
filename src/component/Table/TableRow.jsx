@@ -1,13 +1,18 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Cell from './TableCell';
+import deepEqual from '../../utils/deepEqual';
 
-class TableRow extends PureComponent {
+class TableRow extends Component {
   static propTypes = {
     columns: PropTypes.array,
     record: PropTypes.object,
     rowKey: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   };
+
+  shouldComponentUpdate(nextProps) {
+    return !deepEqual(this.props, nextProps);
+  }
 
   render() {
     const { columns, record, rowKey } = this.props;
