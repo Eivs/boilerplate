@@ -40,7 +40,8 @@ class App extends Component {
     this.setState({ loading: true });
     const url = new URL('https://randomuser.me/api');
     const newParams = { ...params, results };
-    Object.keys(newParams).forEach(key => url.searchParams.append(key, newParams[key]));
+    Object.keys(newParams).forEach(key =>
+      url.searchParams.append(key, newParams[key]));
     fetch(url, {
       method: 'get',
       cache: 'no-cache',
@@ -100,7 +101,10 @@ class App extends Component {
 
     return (
       <div>
-        <button type="button" onClick={() => this.getData()}>
+        <button
+          type="button"
+          onClick={() => this.getData()}
+        >
           Load & Reload
         </button>
         <Table
