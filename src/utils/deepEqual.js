@@ -61,7 +61,7 @@ function equal(a, b, logDiff) {
         // all other properties should be traversed as usual
         if (!equal(a[key], b[key])) {
           if (logDiff) {
-            console.log(`key: ${key}`, a[key], b[key]);
+            console.log(`diff: ${key}`, a[key], b[key]);
           }
           return false;
         }

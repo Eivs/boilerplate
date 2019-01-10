@@ -6,7 +6,7 @@ import { actions, connect } from './TableStore';
 @connect(({ selectedRowKeys }, { rowKey }) => ({
   checked: selectedRowKeys.includes(rowKey),
 }))
-class CheckBox extends PureComponent {
+class Checkbox extends PureComponent {
   static propTypes = {
     selectType: PropTypes.oneOf(['checkbox', 'radio']),
     onChange: PropTypes.func,
@@ -44,12 +44,12 @@ class CheckBox extends PureComponent {
   }
 }
 
-const createCheckBoxCol = props => {
+const createCheckboxCol = props => {
   const { rowSelection, columns } = props;
   const { type, onChange } = rowSelection;
 
-  const renderCheckBox = (record, index, rowKey) => (
-    <CheckBox
+  const renderCheckbox = (record, index, rowKey) => (
+    <Checkbox
       record={record}
       selectType={type}
       onChange={onChange}
@@ -61,14 +61,14 @@ const createCheckBoxCol = props => {
     {
       dataIndex: 'selection-column',
       title: '',
-      render: renderCheckBox,
+      render: renderCheckbox,
     },
     ...columns,
   ];
 };
 
 const withRowSelection = withProps(props => ({
-  columns: createCheckBoxCol(props),
+  columns: createCheckboxCol(props),
 }));
 
 export default withRowSelection;

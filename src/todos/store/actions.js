@@ -13,8 +13,7 @@ export default {
   }),
   toggle: ({ todos }, _a, selected) => ({
     todos: todos.map(todo =>
-      todo.id === selected ? { ...todo, completed: !todo.completed } : todo,
-    ),
+      (todo.id === selected ? { ...todo, completed: !todo.completed } : todo)),
   }),
   setVisibilityFilter: (_s, _a, visibilityFilter) => ({
     visibilityFilter,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Cell from './TableCell';
+import TableCell from './TableCell';
 import deepEqual from '../../utils/deepEqual';
 
 class TableRow extends Component {
@@ -26,7 +26,7 @@ class TableRow extends Component {
         record,
         column,
       };
-      return <Cell {...cellProps} />;
+      return <TableCell {...cellProps} />;
     });
     return <tr>{cells}</tr>;
   }
